@@ -1,0 +1,16 @@
+.add-form {
+  padding: 2rem 10%;
+}
+
+.form-el {
+  display: flex;
+  padding: 1rem 2rem;
+  justify-content: space-between;
+}
+
+.book-add {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10% 0 0;
+  align-items: center;
+}
