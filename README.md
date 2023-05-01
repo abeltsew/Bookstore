@@ -81,8 +81,6 @@ Clone this repository to your desired folder:
   git clone https://github.com/abeltsew/bookstore.git
 ```
 
--
-
 ### Install
 
 Install this project with:
@@ -110,10 +108,6 @@ To run tests, run the following command:
 ```
 
 to check linter errors.
-
-### Deployment
-
---->
 
 ## 👥 Authors <a name="authors"></a>
 
