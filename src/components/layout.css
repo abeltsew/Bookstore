@@ -1,0 +1,20 @@
+.links {
+  display: flex;
+  padding: 1rem 10%;
+  list-style: none;
+}
+
+.links li {
+  padding: 0 1rem;
+  font-size: 1.5rem;
+}
+
+.logo {
+  text-decoration: none;
+  color: rgb(46, 166, 231);
+}
+
+.link {
+  text-decoration: none;
+  color: #000;
+}
