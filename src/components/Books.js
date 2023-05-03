@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import './books.css';
 import Book from './Book';
 import AddBook from './AddBook';
-import Author from './Author';
 
 const Books = () => {
   const { books } = useSelector((state) => state.book);
@@ -17,7 +16,6 @@ const Books = () => {
       )}
       <div className="book-add">
         <AddBook />
-        <Author />
       </div>
     </div>
   );
