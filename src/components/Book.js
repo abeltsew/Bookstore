@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { removeBook } from '../features/book/bookSlice';
 
-const Book = ({ book, setBooks, books }) => {
+const Book = ({ book }) => {
+  const dispatch = useDispatch();
   const handleDelete = (id) => {
-    setBooks(books.filter((book) => book.id !== id));
+    dispatch(removeBook(id));
   };
 
   return (
-    <div key={book.id} className="book">
+    <div key={book.item_id} className="book">
       <p>{book.title}</p>
       <button
         type="button"
         className="book-remove"
-        onClick={() => handleDelete(book.id)}
+        onClick={() => handleDelete(book.item_id)}
       >
         Remove
       </button>
@@ -21,13 +24,8 @@ const Book = ({ book, setBooks, books }) => {
 };
 
 Book.propTypes = {
-  books: PropTypes.arrayOf({
-    id: PropTypes.number,
-    title: PropTypes.string,
-  }).isRequired,
-  setBooks: PropTypes.func.isRequired,
   book: PropTypes.shape({
-    id: PropTypes.number,
+    item_id: PropTypes.string.isRequired,
     title: PropTypes.string,
   }).isRequired,
 };
