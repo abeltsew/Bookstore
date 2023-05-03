@@ -10,7 +10,6 @@ const Books = () => {
 
   return (
     <div>
-      <h1 className="books-title"> Books</h1>
       {books.length > 0 ? (
         books.map((book) => <Book key={book.id} book={book} books={books} />)
       ) : (

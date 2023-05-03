@@ -4,6 +4,8 @@
 
 .form-el {
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
   padding: 1rem 2rem;
   justify-content: space-between;
 }

@@ -11,10 +11,19 @@
 
 .logo {
   text-decoration: none;
-  color: rgb(46, 166, 231);
+  color: #0290ff;
 }
 
 .link {
   text-decoration: none;
   color: #000;
+  height: 1rem;
+  opacity: 0.5;
+  font-family: Montserrat;
+  font-size: 0.813rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1.9px;
 }

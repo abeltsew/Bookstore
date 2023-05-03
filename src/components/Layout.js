@@ -11,12 +11,12 @@ const Layout = () => (
     </li>
     <li>
       <Link className="link" to="/">
-        Books
+        BOOKS
       </Link>
     </li>
     <li>
       <Link className="link" to="/categories">
-        Catagories
+        CATEGORIES
       </Link>
     </li>
   </ul>
