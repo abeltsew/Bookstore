@@ -18,6 +18,11 @@ export const postBook = createAsyncThunk('books/add', async (payload) => {
   return post.data;
 });
 
+export const deleteBook = createAsyncThunk('books/delete', async (payload) => {
+  const deletePost = await axios.delete(`${URL}/${payload}`);
+  return deletePost.data;
+});
+
 const bookSlice = createSlice({
   name: 'book',
   initialState,
@@ -43,7 +48,7 @@ const bookSlice = createSlice({
     builder.addCase(getBooks.fulfilled, (state, { payload }) => {
       state.isLoading = false;
       // eslint-disable-next-line
-      const books = Object.entries(payload).flatMap(([key, value]) => value.map((book) => ({ ...book, id: key })),);
+      const books = Object.entries(payload).flatMap(([key, value]) => value.map((book) => ({ ...book, item_id: key })),);
       state.books = books;
     });
     builder.addCase(getBooks.rejected, (state, action) => {
@@ -56,6 +61,15 @@ const bookSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(postBook.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+    // Delete
+
+    builder.addCase(deleteBook.fulfilled, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(deleteBook.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     });
