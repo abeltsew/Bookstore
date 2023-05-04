@@ -1,27 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
+const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/pf7LGlVtc9WA0twltqG4/books';
 const initialState = {
-  books: [
-    {
-      item_id: 'item1',
-      title: 'The Great Gatsby',
-      author: 'John Smith',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item2',
-      title: 'Anna Karenina',
-      author: 'Leo Tolstoy',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item3',
-      title: 'The Selfish Gene',
-      author: 'Richard Dawkins',
-      category: 'Nonfiction',
-    },
-  ],
+  books: [],
+  isLoading: false,
+  error: undefined,
 };
+
+export const getBooks = createAsyncThunk('books/get', async () => {
+  const books = await axios.get(URL);
+  return books.data;
+});
+
+export const postBook = createAsyncThunk('books/add', async (payload) => {
+  const post = await axios.post(URL, payload);
+  return post.data;
+});
 
 const bookSlice = createSlice({
   name: 'book',
@@ -40,6 +35,30 @@ const bookSlice = createSlice({
         (book) => book.item_id !== action.payload,
       );
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getBooks.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getBooks.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      // eslint-disable-next-line
+      const books = Object.entries(payload).flatMap(([key, value]) => value.map((book) => ({ ...book, id: key })),);
+      state.books = books;
+    });
+    builder.addCase(getBooks.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+    // post
+
+    builder.addCase(postBook.fulfilled, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(postBook.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 
