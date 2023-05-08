@@ -47,8 +47,8 @@ const bookSlice = createSlice({
     });
     builder.addCase(getBooks.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      // eslint-disable-next-line
-      const books = Object.entries(payload).flatMap(([key, value]) => value.map((book) => ({ ...book, item_id: key })),);
+      const books = Object.entries(payload).flatMap(([key, value]) => value.map((book) => (
+      { ...book, item_id: key })),);
       state.books = books;
     });
     builder.addCase(getBooks.rejected, (state, action) => {
