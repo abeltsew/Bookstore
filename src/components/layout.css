@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
 
 .links {
   display: flex;
   align-items: center;
+  gap: 2rem;
   padding: 1rem 10%;
   list-style: none;
   height: 5.938rem;
@@ -10,12 +11,18 @@
 }
 
 .links li {
-  padding: 0 1rem;
   font-size: 1.5rem;
 }
 
 .logo {
   text-decoration: none;
+  font-family: Montserrat;
+  font-size: 1.875rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
   color: #0290ff;
 }
 
