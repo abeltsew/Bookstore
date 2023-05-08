@@ -7,28 +7,34 @@ import { addBook, postBook } from '../features/book/bookSlice';
 const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [error, setError] = useState('');
   const dispatch = useDispatch();
 
   const handleAdd = (e) => {
     e.preventDefault();
-    dispatch(
-      postBook({
-        item_id: uuidv4(),
-        title,
-        author,
-        category: 'Unknown',
-      }),
-    );
-    dispatch(
-      addBook({
-        item_id: uuidv4(),
-        title,
-        author,
-        category: 'Unknown',
-      }),
-    );
-    setTitle('');
-    setAuthor('');
+    if (!title || !author) {
+      setError('Author and Title are required');
+    } else {
+      dispatch(
+        postBook({
+          item_id: uuidv4(),
+          title,
+          author,
+          category: 'Unknown',
+        }),
+      );
+      dispatch(
+        addBook({
+          item_id: uuidv4(),
+          title,
+          author,
+          category: 'Unknown',
+        }),
+      );
+      setError('');
+      setTitle('');
+      setAuthor('');
+    }
   };
 
   return (
@@ -47,6 +53,7 @@ const AddBook = () => {
           placeholder="Author"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
+          required
         >
           <option>Authors</option>
           <option>John Grasham</option>
@@ -61,6 +68,7 @@ const AddBook = () => {
         >
           Add Book
         </button>
+        <span className="error">{error}</span>
       </form>
     </div>
   );
