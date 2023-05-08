@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 .add-form {
   padding: 2rem 10%;
@@ -29,6 +29,7 @@
   padding: 0.813rem 0 0.813rem 1.063rem;
   border-radius: 4px;
   border: solid 1px #e8e8e8;
+  background-color: #fff;
 }
 
 .add-book-btn {
