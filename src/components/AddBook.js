@@ -2,24 +2,39 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './addbooks.css';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../features/book/bookSlice';
+import { addBook, postBook } from '../features/book/bookSlice';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [error, setError] = useState('');
   const dispatch = useDispatch();
 
-  const handleAdd = () => {
-    dispatch(
-      addBook({
-        item_id: uuidv4(),
-        title,
-        author,
-        category: 'Unknown',
-      }),
-    );
-    setTitle('');
-    setAuthor('');
+  const handleAdd = (e) => {
+    e.preventDefault();
+    if (!title || !author) {
+      setError('Author and Title are required');
+    } else {
+      dispatch(
+        postBook({
+          item_id: uuidv4(),
+          title,
+          author,
+          category: 'Unknown',
+        }),
+      );
+      dispatch(
+        addBook({
+          item_id: uuidv4(),
+          title,
+          author,
+          category: 'Unknown',
+        }),
+      );
+      setError('');
+      setTitle('');
+      setAuthor('');
+    }
   };
 
   return (
@@ -38,6 +53,7 @@ const AddBook = () => {
           placeholder="Author"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
+          required
         >
           <option>Authors</option>
           <option>John Grasham</option>
@@ -45,13 +61,14 @@ const AddBook = () => {
         </select>
         <button
           className="add-book-btn"
-          type="button"
-          onClick={() => {
-            handleAdd();
+          type="submit"
+          onClick={(e) => {
+            handleAdd(e);
           }}
         >
           Add Book
         </button>
+        <span className="error">{error}</span>
       </form>
     </div>
   );

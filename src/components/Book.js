@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../features/book/bookSlice';
+import { deleteBook, removeBook } from '../features/book/bookSlice';
 
 const Book = ({ book }) => {
   const dispatch = useDispatch();
@@ -9,6 +9,7 @@ const Book = ({ book }) => {
   const random = Math.floor(Math.random() * (100 - 1 + 1) + 1);
   const handleDelete = (id) => {
     dispatch(removeBook(id));
+    dispatch(deleteBook(id));
   };
 
   return (

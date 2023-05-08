@@ -38,3 +38,7 @@
   border-radius: 3px;
   background-color: #0290ff;
 }
+
+.error {
+  color: red;
+}
