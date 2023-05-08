@@ -32,10 +32,18 @@ const Book = ({ book }) => {
           style={{
             transform: `rotate(${random}deg`,
           }}
-        >
-          .
-        </div>
+        />
+
         <p className="percentage">{`${random}%`}</p>
+      </div>
+      <div className="update-section">
+        <p className="current-chapter">CURRENT CHAPTER</p>
+        <p className="chapter-name">
+          {`Chapter ${((random / 100) * 20).toFixed(0)}`}
+        </p>
+        <button className="update-btn" type="button">
+          <span className="update-btn-text">UPDATE PROGRESS</span>
+        </button>
       </div>
     </div>
   );

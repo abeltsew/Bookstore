@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 
 :root {
   --blue: #4386bf;
@@ -7,7 +7,7 @@
 
 .book {
   display: flex;
-  padding: 2rem 9.188rem 1.625rem 1.688rem;
+  padding: 2rem 2rem 1.625rem 1.688rem;
   margin: 1rem 10%;
   justify-content: space-between;
   background-color: #fff;
@@ -48,6 +48,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.2px;
+  color: #121212;
 }
 
 .book-author {
@@ -62,7 +63,7 @@
 }
 
 .progress {
-  border: solid 5px #307bbe;
+  border: solid 5px #379cf6;
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
@@ -96,4 +97,71 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
+}
+
+.update-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.438rem;
+  position: relative;
+}
+
+.update-section::before {
+  content: "";
+  border-left: solid 1px #e8e8e8;
+  position: absolute;
+  height: 3rem;
+  left: -15%;
+  top: 15%;
+}
+
+.current-chapter {
+  opacity: 0.5;
+  font-family: RobotoSlab, sans-serif;
+  font-size: 0.813rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #121212;
+}
+
+.chapter-name {
+  font-family: RobotoSlab, sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.4px;
+  color: #121212;
+}
+
+.update-btn {
+  margin-top: 1rem;
+  padding: 0.438rem 1.188rem 0.5rem 1.375rem;
+  border: solid 1px #e8e8e8;
+  background-color: #0290ff;
+}
+
+.update-btn-text {
+  opacity: 0.5;
+  width: 8.938rem;
+  height: 1.125rem;
+  font-family: RobotoSlab, sans-serif;
+  font-size: 0.813rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .update-section {
+    display: none;
+  }
 }
