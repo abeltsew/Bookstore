@@ -15,32 +15,17 @@ export const getBooks = createAsyncThunk('books/get', async () => {
 
 export const postBook = createAsyncThunk('books/add', async (payload) => {
   const post = await axios.post(URL, payload);
-  return post.data;
+  return { book: payload, post: post.data };
 });
 
 export const deleteBook = createAsyncThunk('books/delete', async (payload) => {
   const deletePost = await axios.delete(`${URL}/${payload}`);
-  return deletePost.data;
+  return { bookId: payload, deletedPost: deletePost.data };
 });
 
 const bookSlice = createSlice({
   name: 'book',
   initialState,
-  reducers: {
-    addBook: (state, { payload }) => {
-      state.books.push({
-        item_id: payload.item_id,
-        title: payload.title,
-        author: payload.author,
-        category: payload.category,
-      });
-    },
-    removeBook: (state, action) => {
-      state.books = state.books.filter(
-        (book) => book.item_id !== action.payload,
-      );
-    },
-  },
   extraReducers: (builder) => {
     builder.addCase(getBooks.pending, (state) => {
       state.isLoading = true;
@@ -57,8 +42,11 @@ const bookSlice = createSlice({
     });
     // post
 
-    builder.addCase(postBook.fulfilled, (state) => {
+    builder.addCase(postBook.fulfilled, (state, { payload }) => {
       state.isLoading = false;
+      if (payload.post === 'Created') {
+        state.books.push(payload.book);
+      }
     });
     builder.addCase(postBook.rejected, (state, action) => {
       state.isLoading = false;
@@ -66,8 +54,11 @@ const bookSlice = createSlice({
     });
     // Delete
 
-    builder.addCase(deleteBook.fulfilled, (state) => {
+    builder.addCase(deleteBook.fulfilled, (state, { payload }) => {
       state.isLoading = false;
+      state.books = state.books.filter(
+        (book) => book.item_id !== payload.bookId,
+      );
     });
     builder.addCase(deleteBook.rejected, (state, action) => {
       state.isLoading = false;
@@ -75,7 +66,5 @@ const bookSlice = createSlice({
     });
   },
 });
-
-export const { addBook, removeBook } = bookSlice.actions;
 
 export default bookSlice.reducer;

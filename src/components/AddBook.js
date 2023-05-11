@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './addbooks.css';
 import { useDispatch } from 'react-redux';
-import { addBook, postBook } from '../features/book/bookSlice';
+import { postBook } from '../features/book/bookSlice';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
@@ -17,14 +17,6 @@ const AddBook = () => {
     } else {
       dispatch(
         postBook({
-          item_id: uuidv4(),
-          title,
-          author,
-          category: 'Unknown',
-        }),
-      );
-      dispatch(
-        addBook({
           item_id: uuidv4(),
           title,
           author,
